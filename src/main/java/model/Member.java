@@ -1,9 +1,23 @@
 package model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
+
+@Entity
+@Getter // lombok 자동 생성
+@Setter
 public class Member {
+
+    @Column(nullable = false) // not null
     private String name; // 이름
+    @Column(nullable = false)
     private String password; // 비밀번호
+    @Id // PK
     private String studentId; // 학번
+    @Column(nullable = false, unique = true) // not null + 중복 불가
     private String email; // 이메일
 
     @Override
@@ -13,35 +27,4 @@ public class Member {
                 "이메일 = " + email;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(String studentId) {
-        this.studentId = studentId;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }
