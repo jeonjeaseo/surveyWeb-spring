@@ -1,12 +1,12 @@
-package controller;
+package com.survey.demo.controller;
 
 import jakarta.servlet.http.HttpSession;
-import model.Member;
+import com.survey.demo.model.Member;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import repository.MemberRepository;
-import service.MemberService;
+import com.survey.demo.service.MemberService;
 
 @Controller
 @RequestMapping("/members")
@@ -34,16 +34,20 @@ public class MemberController {
             return "register";
         }
 
-        return "redirect:/login";
+        return "redirect:/members/login";
     }
 
     @GetMapping("/login")
+    public String showLoginform() {
+        return "login";
+    }
+    @PostMapping("/login")
     public String login(@RequestParam String studentId, @RequestParam String password, Model model,
                         HttpSession session /* 로그인 성공시 사용자 정보 저장 */) {
         Member member = memberService.findByStudentId(studentId);
 
         // 비밀번호가 null이거나 틀렸을 때
-        if(member == null || memberService.checkPassword(password, member.getPassword())) {
+        if(member == null || !memberService.checkPassword(password, member.getPassword())) {
             model.addAttribute("error", "비밀번호가 틀렸습니다");
 
             return "login";
@@ -51,7 +55,23 @@ public class MemberController {
 
         // 로그인 성공했을 때
         session.setAttribute("loginMember", member);
-        return "redirect:/";
+        return "redirect:/members/surveySelect";
+    }
+    @GetMapping("/surveySelect")
+    public String showSurveySelect(Model model) {
+        return "surveySelect";
+    }
+
+    @GetMapping("/logout")
+    public String goLogin(Model model) {
+        return "login";
+    }
+
+    @PostMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+
+        return "redirect:/members/login";
     }
 
 

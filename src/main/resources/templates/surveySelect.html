@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>설문 선택</title>
+</head>
+<body>
+
+<h2>설문을 선택하세요</h2>
+
+<p><strong th:text="${session.loginMember.name}"></strong>님, 진행할 설문을 선택하세요.</p>
+
+<!-- 설문 버튼들 -->
+<form th:action="@{/survey/lecture}" method="get">
+  <button type="submit">수업 설문</button>
+</form>
+
+<form th:action="@{/survey/school}" method="get">
+  <button type="submit">학교 설문</button>
+</form>
+
+<!-- 로그아웃 버튼 -->
+<form th:action="@{/members/logout}" method="get">
+  <button type="submit">로그아웃</button>
+</form>
+
+</body>
+</html>

@@ -1,9 +1,9 @@
-package service;
+package com.survey.demo.service;
 
 import lombok.RequiredArgsConstructor;
-import model.Member;
+import com.survey.demo.model.Member;
 import org.springframework.stereotype.Service;
-import repository.MemberRepository;
+import com.survey.demo.repository.MemberRepository;
 
 @Service
 @RequiredArgsConstructor
