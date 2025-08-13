@@ -5,6 +5,8 @@ import com.survey.demo.model.Member;
 import org.springframework.stereotype.Service;
 import com.survey.demo.repository.MemberRepository;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class MemberService {
@@ -27,6 +29,10 @@ public class MemberService {
 
     public boolean checkPassword(String rawPassword, String encodedPassword) {
         return rawPassword.equals(encodedPassword);
+    }
+
+    public List<Member> findAll() {
+        return memberRepository.findAll();
     }
 }
 

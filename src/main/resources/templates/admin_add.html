@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>회원 추가</title>
+</head>
+<body>
+<h1>회원 추가</h1>
+
+<form th:action="@{/admin/members/add}" th:object="${member}" method="post">
+    <input type="text" th:field="*{studentId}" placeholder="학번" required />
+    <input type="text" th:field="*{name}" placeholder="이름" required />
+    <input type="password" th:field="*{password}" placeholder="비밀번호" required />
+    <input type="email" th:field="*{email}" placeholder="이메일" required />
+    <button type="submit">회원 추가</button>
+</form>
+
+<div th:if="${errorMessage}">
+    <p th:text="${errorMessage}" style="color:red;"></p>
+</div>
+
+
+<a href="/admin/members"><button type="button">회원 목록으로</button></a>
+</body>
+</html>

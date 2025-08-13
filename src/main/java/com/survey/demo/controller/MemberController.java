@@ -44,6 +44,17 @@ public class MemberController {
     @PostMapping("/login")
     public String login(@RequestParam String studentId, @RequestParam String password, Model model,
                         HttpSession session /* 로그인 성공시 사용자 정보 저장 */) {
+
+        // 관리자
+        if(studentId.equals("0000") && password.equals("admin")) {
+            Member admin = new Member();
+            admin.setStudentId("0000");
+            admin.setName("관리자");
+            session.setAttribute("loginMember", admin);
+
+            return "redirect:/admin";
+        }
+
         Member member = memberService.findByStudentId(studentId);
 
         // 비밀번호가 null이거나 틀렸을 때
@@ -52,6 +63,8 @@ public class MemberController {
 
             return "login";
         }
+
+        session.setAttribute("loginMember", member);
 
         // 로그인 성공했을 때
         session.setAttribute("loginMember", member);
@@ -73,6 +86,5 @@ public class MemberController {
 
         return "redirect:/members/login";
     }
-
 
 }
