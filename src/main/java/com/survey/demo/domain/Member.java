@@ -1,4 +1,4 @@
-package com.survey.demo.model;
+package com.survey.demo.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

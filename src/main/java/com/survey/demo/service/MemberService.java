@@ -1,7 +1,7 @@
 package com.survey.demo.service;
 
 import lombok.RequiredArgsConstructor;
-import com.survey.demo.model.Member;
+import com.survey.demo.domain.Member;
 import org.springframework.stereotype.Service;
 import com.survey.demo.repository.MemberRepository;
 

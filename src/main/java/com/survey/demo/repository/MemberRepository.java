@@ -1,6 +1,6 @@
 package com.survey.demo.repository;
 
-import com.survey.demo.model.Member;
+import com.survey.demo.domain.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,8 +1,7 @@
 package com.survey.demo.controller;
 
 import jakarta.servlet.http.HttpSession;
-import com.survey.demo.model.Member;
-import lombok.RequiredArgsConstructor;
+import com.survey.demo.domain.Member;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

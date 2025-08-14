@@ -1,6 +1,6 @@
 package com.survey.demo.controller;
 
-import com.survey.demo.model.Member;
+import com.survey.demo.domain.Member;
 import com.survey.demo.repository.MemberRepository;
 import com.survey.demo.service.MemberService;
 import jakarta.servlet.http.HttpSession;
