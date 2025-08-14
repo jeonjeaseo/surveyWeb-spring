@@ -1,15 +1,13 @@
 package com.survey.demo.controller;
 
 import com.survey.demo.model.Member;
+import com.survey.demo.repository.MemberRepository;
 import com.survey.demo.service.MemberService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 
 @Controller
@@ -18,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AdminController {
 
     private final MemberService memberService;
+    private final MemberRepository memberRepository;
 
     // 관리자 메인
     @GetMapping
@@ -67,6 +66,13 @@ public class AdminController {
         return "redirect:/admin/members";
     }
 
+    // 회원 삭제
+    @GetMapping("/members/delete/{studentId}")
+    public String deleteMember(@PathVariable String studentId) {
+        memberService.deleteMember(studentId);
+
+        return "redirect:/admin/members";
+    }
 
     // 회원 수정
 

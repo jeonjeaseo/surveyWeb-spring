@@ -20,6 +20,12 @@
         <td th:text="${member.studentId}"></td>
         <td th:text="${member.name}"></td>
         <td th:text="${member.email}"></td>
+        <td>
+            <a th:href="@{'/admin/members/delete/' + ${member.studentId}}"
+               onclick="return confirm('정말 삭제하시겠습니까?')">
+                삭제
+            </a>
+        </td>
     </tr>
     </tbody>
 </table>

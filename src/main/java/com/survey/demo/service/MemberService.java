@@ -45,5 +45,9 @@ public class MemberService {
     public List<Member> findAll() {
         return memberRepository.findAll(); // JPA
     }
+
+    public void deleteMember(String studentId) {
+        memberRepository.deleteById(studentId); // 회원 삭제 JPA
+    }
 }
 
