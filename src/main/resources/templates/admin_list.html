@@ -6,35 +6,26 @@
 </head>
 <body>
 <h1>회원 목록</h1>
+
 <table border="1">
+    <thead>
     <tr>
-        <th>ID</th>
         <th>학번</th>
         <th>이름</th>
-        <th>수정</th>
-        <th>삭제</th>
+        <th>이메일</th>
     </tr>
+    </thead>
+    <tbody>
     <tr th:each="member : ${members}">
-        <td th:text="${member.id}"></td>
         <td th:text="${member.studentId}"></td>
         <td th:text="${member.name}"></td>
-        <td>
-            <form th:action="@{/members/admin/update}" method="get">
-                <input type="hidden" name="id" th:value="${member.id}">
-                <button type="submit">수정</button>
-            </form>
-        </td>
-        <td>
-            <form th:action="@{/members/admin/delete}" method="post">
-                <input type="hidden" name="id" th:value="${member.id}">
-                <button type="submit">삭제</button>
-            </form>
-        </td>
+        <td th:text="${member.email}"></td>
     </tr>
+    </tbody>
 </table>
 
-<form th:action="@{/members/admin}" method="get">
-    <button type="submit">관리자 홈으로</button>
-</form>
+<br>
+<a th:href="@{/admin}">관리자 메인</a>
+
 </body>
 </html>
