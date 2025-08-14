@@ -27,11 +27,14 @@ public class MemberController {
 
     @PostMapping("/register")
     public String registerMember(@ModelAttribute Member member, Model model) {
-        boolean success = memberService.registerMember(member); // 학번이 중복인지 아닌지 true, false
+        String result = memberService.registerMember(member);
 
-        if(!success) {
+        if(result.equals("STUDENT_ID")) {
             model.addAttribute("error", "이미 사용중인 학번입니다.");
             return "register";
+        }
+        if(result.equals("TEACHER_ID")) {
+            model.addAttribute("error", "이미 사용중인 이메일입니다.");
         }
 
         return "redirect:/members/login";

@@ -13,12 +13,23 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
 
-    public boolean registerMember(Member member) {
+    public String registerMember(Member member) {
         if(memberRepository.existsByStudentId(member.getStudentId())) {
-            return false; // 학번이 중복이면 false
+            return "STUDENT_ID";
+        }
+        if(memberRepository.existsByEmail(member.getEmail())) {
+            return "EMAIL";
         }
 
         memberRepository.save(member);
+
+        return "SUCCESS";
+    }
+    public boolean registerMemberEmail(Member member){
+
+        if(memberRepository.existsByEmail(member.getEmail())) {
+            return false; // 이메일이 중복이면 false
+        }
 
         return true;
     }

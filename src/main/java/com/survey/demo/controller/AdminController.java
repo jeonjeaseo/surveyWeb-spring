@@ -53,10 +53,14 @@ public class AdminController {
     }
     @PostMapping("/members/add")
     public String memberAdd(@ModelAttribute Member member, Model model) {
-        boolean success = memberService.registerMember(member);
+        String result = memberService.registerMember(member);
 
-        if(!success) {
+        if(result.equals("STUDENT_ID")) {
             model.addAttribute("error", "이미 존재하는 학번입니다.");
+            return "admin_add";
+        }
+        if(result.equals("EMAIL")) {
+            model.addAttribute("error", "이미 존재하는 이메일입니다.");
             return "admin_add";
         }
 
