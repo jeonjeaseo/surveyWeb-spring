@@ -6,7 +6,7 @@ import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity
+@Entity // DB 연결(JPA)
 @Getter // lombok 자동 생성
 @Setter
 public class Member {
