@@ -7,18 +7,26 @@
 <body>
 <h1>회원 수정</h1>
 
-<form th:action="@{/admin/members/edit}" th:object="${member}" method="post">
-  <input type="hidden" th:field="*{id}"/>
+<form th:action="@{'/admin/members/edit/' + ${member.studentId}}" method="post" th:object="${member}">
+  <p th:if="${error}" th:text="${error}" style="color: red;"></p>
+
   <label>학번:</label>
-  <input type="text" th:field="*{studentId}" required/><br/>
+  <input type="text" th:field="*{studentId}" required/>
+  <small style="color: orange;">⚠️ 학번 변경 시 주의하세요</small><br><br>
+
   <label>이름:</label>
-  <input type="text" th:field="*{name}" required/><br/>
+  <input type="text" th:field="*{name}" required/><br><br>
+
   <label>비밀번호:</label>
-  <input type="password" th:field="*{password}" required/><br/>
+  <input type="password" th:field="*{password}" required/><br><br>
+
+  <label>이메일:</label>
+  <input type="email" th:field="*{email}" required/><br><br>
+
   <button type="submit">수정</button>
 </form>
 
-<a href="/admin/members"><button type="button">회원 목록으로</button></a>
+<br>
+<a th:href="@{/admin/members}">회원 목록으로</a>
 </body>
 </html>
-

@@ -21,6 +21,11 @@
         <td th:text="${member.name}"></td>
         <td th:text="${member.email}"></td>
         <td>
+            <!-- 수정 버튼 추가 -->
+            <a th:href="@{'/admin/members/edit/' + ${member.studentId}}">
+                수정
+            </a>
+            |  <!-- 구분선 -->
             <a th:href="@{'/admin/members/delete/' + ${member.studentId}}"
                onclick="return confirm('정말 삭제하시겠습니까?')">
                 삭제

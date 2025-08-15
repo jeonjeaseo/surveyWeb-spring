@@ -16,4 +16,7 @@ public interface MemberRepository extends JpaRepository<Member, String> {
 
     // DB에 이메일이 이미 존재하는지 true, false
     boolean existsByEmail(String email);
+
+    // DB에서 이메일으로 회원을 찾음
+    Optional<Member> findByEmail(String email);
 }

@@ -75,7 +75,47 @@ public class AdminController {
     }
 
     // 회원 수정
+    @GetMapping("/members/edit/{studentId}")
+    public String showEditMemberForm(@PathVariable String studentId, Model model) {
+        Member member = memberService.findByStudentId(studentId);
+        model.addAttribute("member", member);
 
+        return "admin_edit";
+    }
+    @PostMapping("/members/edit/{studentId}")
+    public String editMember(@PathVariable String studentId, @ModelAttribute Member member, Model model) {
+
+        // !studentId.equals(member.getStudentId())
+        // = 수정 전 학번(studentId)과 수정 후 이메일(member.getStudentId())이 다를 때
+        // if(학번이 바뀌었을 때 && 바뀐 학번이 DB에 존재하면)
+        if(!studentId.equals(member.getStudentId()) && memberRepository.existsByStudentId(member.getStudentId())) {
+            model.addAttribute("error", "이미 존재하는 학번입니다.");
+            model.addAttribute("member", member);
+
+            return "admin_edit";
+        }
+
+        Member originMember = memberService.findByStudentId(studentId);
+
+        // !originMember.getEmail().equals(member.getEmail())
+        // = 기존 이메일(originMember.getEmail())과 수정 후 이메일(member.getEmail())이 다를 때
+        // if(이메일이 바뀌었을 때 && 바뀐 이메일이 DB에 존재하면)
+        if(!originMember.getEmail().equals(member.getEmail()) && memberRepository.existsByEmail(member.getEmail())) {
+            model.addAttribute("error", "이미 존재하는 이메일입니다.");
+            model.addAttribute("member", member);
+
+            return "admin_edit";
+        }
+
+
+        if(!studentId.equals(member.getStudentId())) {
+            memberService.deleteMember(studentId);
+        }
+
+        memberService.updateMember(member);
+
+        return "redirect:/admin/members";
+    }
 
 
 

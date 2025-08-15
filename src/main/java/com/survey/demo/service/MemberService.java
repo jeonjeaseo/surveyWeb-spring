@@ -47,7 +47,11 @@ public class MemberService {
     }
 
     public void deleteMember(String studentId) {
-        memberRepository.deleteById(studentId); // 회원 삭제 JPA
+        memberRepository.deleteById(studentId); // 회원 삭제, JPA 기본 메서드
+    }
+
+    public void updateMember(Member member) {
+        memberRepository.save(member); // 회원 수정, JPA 기본 메서드
     }
 }
 
