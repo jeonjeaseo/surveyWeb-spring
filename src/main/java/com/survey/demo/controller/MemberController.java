@@ -66,8 +66,6 @@ public class MemberController {
             return "login";
         }
 
-        session.setAttribute("loginMember", member);
-
         // 로그인 성공했을 때
         session.setAttribute("loginMember", member);
         return "redirect:/members/surveySelect";
